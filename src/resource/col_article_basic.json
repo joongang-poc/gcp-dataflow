@@ -1,0 +1,175 @@
+[
+  {
+    "description": "기사 번호",
+    "name": "totalid",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "기사 제목",
+    "name": "article_title",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "벌크 발행 리스트",
+    "name": "bulk_site",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "기사 url path",
+    "name": "urlpath",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "JAM 기사 번호",
+    "name": "jamid",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "인용문 글자 수",
+    "name": "box_article_count",
+    "type": "INTEGER",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "이미지 수",
+    "name": "image_cnt",
+    "type": "INTEGER",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "sns 인용 수",
+    "name": "sns_cnt",
+    "type": "INTEGER",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "영상 수",
+    "name": "vod_cnt",
+    "type": "INTEGER",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "유형",
+    "name": "article_type",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "태그",
+    "name": "keyword",
+    "type": "STRING",
+    "mode": "REPEATED"
+  },
+  {
+    "description": "원본기사(복제 기사인 경우)",
+    "name": "origin_article_id",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "발행 부서",
+    "name": "release_department",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "발행일",
+    "name": "service_date",
+    "type": "DATETIME",
+    "mode": "NULLABLE"
+  },
+    {
+    "description": "기자리스트",
+    "name": "reporter",
+    "type": "RECORD",
+    "mode": "REPEATED",
+    "fields": [
+      {
+        "description": "기자번호",
+        "name": "reporter_seq",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+      },
+      {
+        "description": "기자명",
+        "name": "reporter_name",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "description": "기자 소속 부서",
+        "name": "department_name",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      }
+    ]
+  },
+  {
+    "description": "섹션 리스트",
+    "name": "section",
+    "type": "RECORD",
+    "mode": "REPEATED",
+    "fields": [
+      {
+        "description": "섹션 1",
+        "name": "cat1",
+        "type": "STRING",
+        "mode": "REPEATED"
+
+      },
+      {
+        "description": "섹션 2",
+        "name": "cat2",
+        "type": "STRING",
+        "mode": "REPEATED"
+
+      },
+      {
+        "description": "섹션 3",
+        "name": "cat3",
+        "type": "STRING",
+        "mode": "REPEATED"
+
+      }
+    ]
+  },
+   {
+     "description": "생성일",
+    "name": "create_date",
+    "type": "DATETIME",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "article_flag",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "본문 글자 수",
+    "name": "text_cnt",
+    "type": "INTEGER",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "기사 출처 번호",
+    "name": "source_code",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "기사 출처명",
+    "name": "source_name",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+   {
+    "name": "press_date",
+    "type": "DATETIME",
+    "mode": "NULLABLE"
+  }
+]

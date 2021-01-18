@@ -1,0 +1,78 @@
+[
+  {
+    "name": "totalid",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "사용기기",
+    "name": "device",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "유입경로_상세",
+    "name": "referer_detail",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "유입경로_그룹",
+    "name": "referer_group",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "name": "regdate",
+    "type": "DATETIME",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "유입경로",
+    "name": "referer_super",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "기사 url path",
+    "name": "urlpath",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "순 방문자 수",
+    "name": "uv",
+    "type": "INTEGER",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "페이지 뷰",
+    "name": "pv",
+    "type": "INTEGER",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "소비시간",
+    "name": "ontime",
+    "type": "INTEGER",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "완독수",
+    "name": "read",
+    "type": "INTEGER",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "섹션 이름",
+    "name": "section_name",
+    "type": "STRING",
+    "mode": "NULLABLE"
+  },
+  {
+    "description": "2018년 이후 사용X",
+    "name": "bs",
+    "type": "INTEGER",
+    "mode": "NULLABLE"
+  }
+]
