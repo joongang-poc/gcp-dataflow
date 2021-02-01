@@ -72,6 +72,14 @@ def preProcessing(fields):
             json_data["reporter"]["reporter_name"] = None
         if "department_name" not in json_data["reporter"]:
             json_data["reporter"]["department_name"] = None
+    if "article_body" not in json_data :
+        json_data["article_body"] = None
+    if "first_img_src" not in json_data :
+        json_data["first_img_src"] = None
+    if "embed_youtube" not in json_data :
+        json_data["embed_youtube"] = None
+    if "embed_ooyala" not in json_data :
+        json_data["embed_ooyala"] = None
     yield json_data
 class DataTransformation:
      def __init__(self):
@@ -115,7 +123,6 @@ class PTransform(beam.DoFn) :
                     sub_recu_cat["cat2"] = None
                     sub_recu_cat["cat3"] = None
                     recu_sect.append(sub_recu_cat)
-
             if type(fields["section"][0]) == type(com2) :
                 sub_recu_cat = {}
                 for i in range(len(fields["section"])) :
@@ -126,8 +133,12 @@ class PTransform(beam.DoFn) :
                     if 'cat3' in fields["section"][i] :
                         sub_recu_cat["cat3"] = fields["section"][i]["cat3"]
                     recu_sect.append(sub_recu_cat)
-        if recu_sect[0]['cat1'] is not None :
-            print(recu_sect)
+        embed_ovpl = []
+        if fields["embed_ooyala"] is not None :
+            embed_ovpl = fields["embed_ooyala"].split("@@")
+        embed_youtubel = []
+        if fields["embed_youtube"] is not None :
+            embed_youtubel = fields["embed_youtube"].split("@@")
         create_date_variable = None
         if fields["create_date"]["date"] is not None :
             create_date_variable = fields["create_date"]["date"][0:19]
@@ -164,15 +175,19 @@ class PTransform(beam.DoFn) :
         tablerow["source_code"] = fields["source_code"]
         tablerow["source_name"] = fields["source_name"]
         tablerow["press_date"] = press_date_variable
+        tablerow["article_body"] = fields["article_body"]
+        tablerow["first_img_src"] = fields["first_img_src"]
+        tablerow["embed_youtube"] = embed_youtubel
+        tablerow["embed_ovp"] = embed_ovpl
         yield tablerow
 def run(project, bucket, dataset) :
         argv = [
             "--project={0}".format(project),
-            "--job_name=col-article-basic",
+            "--job_name=col-article-basic-body",
             "--save_main_session",
             "--region=asia-northeast1",
-            "--staging_location=gs://{0}/[BUCKET_NAME]/".format(bucket),
-            "--temp_location=gs://{0}/[BUCKET_NAME]/".format(bucket),
+            "--staging_location=gs://{0}/staging/".format(bucket),
+            "--temp_location=gs://{0}/temp-location/".format(bucket),
             "--max_num_workers=8",
             "--autoscaling_algorithm=THROUGHPUT_BASED",
             "--runner=DataflowRunner",
@@ -183,7 +198,7 @@ def run(project, bucket, dataset) :
         pipeline = beam.Pipeline(argv=argv)
         ptransform = (pipeline
                       | "Read from GCS" >> beam.io.ReadFromText(filename)
-                      | "Pre Processing" >> beam.FlatMap(preProcessing)
+                      | "Pre-Processing" >> beam.FlatMap(preProcessing)
                       | "PTransform" >> beam.ParDo(PTransform())
                       )
         data_ingestion = DataTransformation()
